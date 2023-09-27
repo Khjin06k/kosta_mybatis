@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mabatis.org//DTO Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<!-- 아래 파일만 읽어주면 자동으로 객체화되어 실행되기 때문에 자바에 끌어다가 사용하기 위한 역할을 마이바티스 라이브러리가 하는 것 -->
+<!-- 마이바티스가 태그들에 관련해 정의내려 놓은 것 -->
+<configuration>
+    <typeAliases>
+        <!-- mapper에서 데이터를 넣고 뺄 때 모든 클래스의 임폴트를 대신해주는 것 -->
+        <typeAlias type="com.example.kosta_mybatis.bean.Account" alias="Account"/>
+        <typeAlias type="com.example.kosta_mybatis.bean.Member" alias="Member"/>
+    </typeAliases>
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="org.mariadb.jdbc.Driver"/>
+                <property name="url" value="jdbc:mariadb://localhost:3306/testdb"/>
+                <property name="username" value="root"/>
+                <property name="password" value="admin1234"/>
+            </dataSource>
+            <!--<dataSource type="JNDI">
+                 context.xml에서 데이터 소스를 읽어옴
+                <property name="data_source" value="java:comp/env/jdbc/kosta"/>
+            </dataSource>-->
+        </environment>
+    </environments>
+
+    <mappers>
+        <!-- 마이바티스에서 쿼리문을 가지고 있는 클래스를 mapper라고 함 -->
+        <!-- 마이바티스 관련 xml 파일들은 자바 파일이 아님에도 불구하고 패키지(자바 클래스 사이의 폴더 구조)에 넣어야 하고 폴더에 넣으면 안됨 -->
+        <!-- 쿼리문을 xml 포맷으로 만들어 주는 것으로 아래 파일에 쿼리문을 작성해줌 -->
+        <mapper resource="mapper/Account.xml"/>
+        <mapper resource="mapper/Member.xml"/>
+    </mappers>
+</configuration>
