@@ -33,7 +33,7 @@ public class Join extends HttpServlet {
         try{
             MemberService memberService = new MemberServiceImpl();
             memberService.join(member);
-            req.setAttribute("member", member);
+            req.setAttribute("user", member);
             req.getRequestDispatcher("/bank/login.jsp").forward(req, res);
         } catch (Exception e) {
             e.printStackTrace();

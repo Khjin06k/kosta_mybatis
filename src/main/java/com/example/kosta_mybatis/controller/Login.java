@@ -28,7 +28,7 @@ public class Login extends HttpServlet {
         try{
             MemberService memberService = new MemberServiceImpl();
             Member member = memberService.login(id);
-            req.setAttribute("member", member);
+            req.setAttribute("user", member);
             req.getRequestDispatcher("/bank/makeAccount.jsp").forward(req, res);
         }catch (Exception e){
             e.printStackTrace();;
